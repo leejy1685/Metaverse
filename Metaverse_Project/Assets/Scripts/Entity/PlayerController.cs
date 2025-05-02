@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : BaseController
 {
+
     protected override void HandleAction()
     {
         //이동
@@ -17,7 +18,15 @@ public class PlayerController : BaseController
             jumpY = statHandler.JumpPower;
             isJump = true;
         }
+
+        //상호작용 물체
+        if(ObjectController != null && ObjectController.IsActive)
+        {
+            if(Input.GetKeyDown(KeyCode.F)) 
+                ObjectController.ActiveObject();
+        }
     }
+
 
 
 }

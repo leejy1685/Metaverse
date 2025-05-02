@@ -19,6 +19,9 @@ public class BaseController : MonoBehaviour
 
     protected float jumpY;  //점프처리에 필요한 변수
 
+    [SerializeField] ObjectController objectController;//상호작용
+    protected ObjectController ObjectController { get { return objectController; } }
+
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -78,13 +81,40 @@ public class BaseController : MonoBehaviour
             direction.y = jump;
             _rigidbody.velocity = direction;
 
+            //점프중 충돌 무시
+            _rigidbody.isKinematic = true;
+
             //점프 종료
             if (jumpY >= jumpPower * 5)
             {
+                //충돌 무시 종료
+                _rigidbody.isKinematic = false;
+
                 isJump = false;
                 //애니메이션 종료
                 animationHandler.EndJump();
             }
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        objectController = collision.collider.GetComponent<ObjectController>();
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        objectController = null;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+         objectController = collision.GetComponent<ObjectController>();
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        objectController = null;
+    }
+
 }
