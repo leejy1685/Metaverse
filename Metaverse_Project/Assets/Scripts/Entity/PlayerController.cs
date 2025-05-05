@@ -32,4 +32,22 @@ public class PlayerController : BaseController
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D (collision);
+        if (collision.CompareTag("Arrow"))
+        {
+            gameManager.JumpGameOver();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        base.OnTriggerExit2D (collision);
+        if (collision.CompareTag("Obstacle"))
+        {
+            gameManager.addJumpGamePoint();
+        }
+    }
+
 }

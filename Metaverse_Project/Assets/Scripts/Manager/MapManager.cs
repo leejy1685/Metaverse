@@ -13,10 +13,15 @@ public class MapManager : MonoBehaviour
     private RoomController[] rooms;
     private DoorController[] dooms;
 
+
+    //점프 게임 구현
     [SerializeField] private Transform jumpGamePosition;
-    public Transform JumpGamePosition {  get { return jumpGamePosition; }}
+    public Transform JumpGamePosition { get { return jumpGamePosition; } }
     [SerializeField] private Transform jumpGameCameraPosition;
     public Transform JumpGameCameraPostion { get { return jumpGameCameraPosition; } }
+
+    [SerializeField] private Transform arrowSpwanPostion;
+    public Transform ArrowSpwanPostion { get { return arrowSpwanPostion; } }
 
 
     private void Awake()

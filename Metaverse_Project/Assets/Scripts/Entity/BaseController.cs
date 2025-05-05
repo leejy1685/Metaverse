@@ -141,12 +141,12 @@ public class BaseController : MonoBehaviour
         objectController = null;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
          objectController = collision.GetComponent<ObjectController>();
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected void OnTriggerExit2D(Collider2D collision)
     {
         objectController = null;
     }

@@ -16,16 +16,16 @@ public class LeverController : ObjectController
     {
         //게임 시작
         RightLever();
-        gameManager.jumpGameStarted = true;
+        gameManager.JumpGameStart();
     }
 
-    void RightLever()
+    public void RightLever()
     {
         beforeObject.SetActive(false);
         afterObject.SetActive(true);
     }
 
-    void LeftLever()
+    public void LeftLever()
     {
         beforeObject.SetActive(true);
         afterObject.SetActive(false);
