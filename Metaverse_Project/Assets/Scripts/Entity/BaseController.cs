@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BaseController : MonoBehaviour
@@ -119,16 +120,6 @@ public class BaseController : MonoBehaviour
         Vector2 velocity = (targetPosition - transform.position).normalized * statHandler.Speed;
 
         _rigidbody.velocity = velocity;
-
-        //타겟 포지션을 넘어가면 타겟포지션으로 이동시키고 정지
-        if (targetPosition.x < transform.position.x &&
-            targetPosition.y > transform.position.y)
-        {
-            _rigidbody.velocity = Vector2.zero;
-            transform.position = targetPosition;
-            gameManager.jumpGameStarted = false;
-            gameManager.JumpGamePlayed = true;  //게임 플레이 중
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -144,6 +135,15 @@ public class BaseController : MonoBehaviour
     protected void OnTriggerEnter2D(Collider2D collision)
     {
          objectController = collision.GetComponent<ObjectController>();
+
+        //타겟 포지션을 충돌하면 타겟포지션으로 이동시키고 정지
+        if (gameManager.jumpGameStarted && collision.CompareTag("JumpGamePosition"))
+        {
+            _rigidbody.velocity = Vector2.zero;
+            transform.position = mapManager.JumpGamePosition.position;
+            gameManager.jumpGameStarted = false;
+            gameManager.JumpGamePlayed = true;  //게임 플레이 중
+        }
     }
 
     protected void OnTriggerExit2D(Collider2D collision)

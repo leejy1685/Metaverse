@@ -6,14 +6,16 @@ public class Obstacle : MonoBehaviour
 {
     [SerializeField] GameObject arrow;
     Rigidbody2D _rigidbody;
-    float[] heights = { -2f, -0.5f, 1.5f };
+    float[] heights = { -2f, 1.5f };
+    GameManager gameManager;
     void Start()
     {
+        gameManager = GameManager.instance;
         _rigidbody = GetComponent<Rigidbody2D>();
 
         //랜덤한 높이에 화살 생성
         Vector3 arrowPostion = arrow.transform.position;
-        arrowPostion.y += heights[Random.Range(0,3)];
+        arrowPostion.y += heights[Random.Range(0,2)];
         arrow.transform.position = arrowPostion;
     }
 
@@ -22,7 +24,8 @@ public class Obstacle : MonoBehaviour
         Vector2 velocity = Vector2.left * 10;
         _rigidbody.velocity = velocity;
 
-        if(transform.position.x < -16)
+        //좌표를 벗어나거나 게임이 종료되면 파괴
+        if(transform.position.x < -16 || !gameManager.JumpGamePlayed)
         {
             Destroy(gameObject);
         }

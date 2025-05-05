@@ -8,13 +8,21 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     //맵
     MapManager mapManager;
+    //UI
+    UIManager uiManager;
+
 
     //점프 게임
     [SerializeField] LeverController jumpGameLever;
     public bool jumpGameStarted { get; set; }
     public bool JumpGamePlayed {  get; set; }
     [SerializeField] GameObject Obstacle;
-    public int jumpGamePoint;
+    private int jumpGameScore = 0;
+    public int JumpGameScore { get { return jumpGameScore; } }
+
+    private const string jumpGameBestScore = "JumpGame";
+    public string JumpGameBestScore { get {return jumpGameBestScore;} }
+
 
 
     //플레이어
@@ -29,13 +37,24 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         mapManager = MapManager.instance;
+        uiManager = UIManager.instance;
+
+        uiManager.ChangeState(UIState.Home);
+
+        jumpGameStarted = false;
+        JumpGamePlayed = false;
     }
 
     public void JumpGameStart()
     {
+        //게임 설정
         jumpGameStarted = true;
         StartCoroutine(createArrow());
-        jumpGamePoint = 0;
+        jumpGameScore = 0;
+
+        //UI 설정
+        uiManager.ChangeScore(jumpGameScore);
+        uiManager.ChangeState(UIState.JumpGame);
     }
 
     IEnumerator createArrow()
@@ -49,16 +68,31 @@ public class GameManager : MonoBehaviour
 
     public void JumpGameOver()
     {
+        int bestScore = PlayerPrefs.GetInt(jumpGameBestScore);
+        if (bestScore < jumpGameScore)
+        {
+            bestScore = jumpGameScore;
+        }
+        PlayerPrefs.SetInt(jumpGameBestScore, bestScore);
+
         JumpGamePlayed = false;
         StopAllCoroutines();
         jumpGameLever.LeftLever();
+
+        //UI
+        uiManager.ChangeGameOverPanel();
+        uiManager.ChangeState(UIState.JumpGameOver);
     }
 
+    public void StartGame()
+    {
+        uiManager.ChangeState(UIState.Game);
+    }
     public void addJumpGamePoint()
     {
-        jumpGamePoint++;
-        Debug.Log(jumpGamePoint);
-        
+        jumpGameScore++;
+        //UI갱신
+        uiManager.ChangeScore(jumpGameScore);
     }
 
 }
