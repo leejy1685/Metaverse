@@ -19,6 +19,6 @@ public class StatHandler : MonoBehaviour
     public float JumpPower
     {
         get => jumpPower;
-        set => jumpPower = Mathf.Clamp(value, 0, 10);
+        set => jumpPower = Mathf.Clamp(value, 0, 20);
     }
 }

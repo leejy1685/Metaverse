@@ -6,24 +6,35 @@ public class FollowCamera : MonoBehaviour
 {
     [SerializeField] Transform target;
     private BaseController baseController;
-    
-    void Awake()
-    {
-        if (target == null) //타겟이 없으면 실행하지 않음
-            return;
 
+    private GameManager gameManager;
+    private MapManager mapManager;
+
+    void Start()
+    {
         baseController = target.GetComponent<BaseController>();
+        gameManager = GameManager.instance;
+        mapManager = MapManager.instance;
+
     }
 
     void FixedUpdate()
     {
-        if (target == null) //타겟이 없으면 실행하지 않음
+        Vector3 pos;
+        if (gameManager.JumpGamePlayed)
+        {   //점프 게임 중 카메라 위치
+            pos = transform.position;
+            pos.x = mapManager.JumpGameCameraPostion.position.x;
+            pos.y = mapManager.JumpGameCameraPostion.position.y;
+            transform.position = pos;
             return;
+        }
 
-        Vector3 pos = transform.position;
+        pos = transform.position;
         pos.x = target.position.x;
         if(!baseController.IsJump)
             pos.y = target.position.y;
         transform.position = pos;
     }
+
 }

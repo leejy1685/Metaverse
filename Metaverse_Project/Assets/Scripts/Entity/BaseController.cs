@@ -12,21 +12,25 @@ public class BaseController : MonoBehaviour
     public Vector2 MovementDirection { get { return movementDirection; } }
 
     protected bool isJump = false;  //점프 판단 여부
+    protected float jumpY = 0;  //점프처리에 필요한 변수
     public bool IsJump { get { return isJump; } }
 
     protected AnimationHandler animationHandler;//애니메이션 처리
     protected StatHandler statHandler;
 
-    protected float jumpY;  //점프처리에 필요한 변수
-
     [SerializeField] ObjectController objectController;//상호작용
     protected ObjectController ObjectController { get { return objectController; } }
 
-    protected virtual void Awake()
+    protected GameManager gameManager;
+    protected MapManager mapManager;
+
+    protected virtual void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<AnimationHandler>();
         statHandler = GetComponent<StatHandler>();
+        gameManager = GameManager.instance;
+        mapManager = MapManager.instance;
     }
 
     protected virtual void Update()
@@ -37,6 +41,18 @@ public class BaseController : MonoBehaviour
 
     protected void FixedUpdate()
     {
+        if (gameManager.jumpGameStarted)
+        {   //조작 잠시 정지
+            moveJumpGamePosition(); //게임 위치로 이동
+            return;
+        }
+        if (gameManager.JumpGamePlayed)
+        {
+            statHandler.JumpPower = 20;
+            Jump();
+            return;
+        }
+
         Movement(movementDirection);    //이동
         Jump(); //점프
     }
@@ -70,7 +86,7 @@ public class BaseController : MonoBehaviour
     {
         //점프파워 가져오기
         float jumpPower = statHandler.JumpPower;
-        
+
         //점프 연산
         if (isJump)
         {
@@ -94,6 +110,24 @@ public class BaseController : MonoBehaviour
                 //애니메이션 종료
                 animationHandler.EndJump();
             }
+        }
+    }
+
+    public void moveJumpGamePosition()
+    {
+        Vector3 targetPosition = mapManager.JumpGamePosition.position;
+        Vector2 velocity = (targetPosition - transform.position).normalized * statHandler.Speed;
+
+        _rigidbody.velocity = velocity;
+
+        //타겟 포지션을 넘어가면 타겟포지션으로 이동시키고 정지
+        if (targetPosition.x < transform.position.x &&
+            targetPosition.y > transform.position.y)
+        {
+            _rigidbody.velocity = Vector2.zero;
+            transform.position = targetPosition;
+            gameManager.jumpGameStarted = false;
+            gameManager.JumpGamePlayed = true;  //게임 플레이 중
         }
     }
 

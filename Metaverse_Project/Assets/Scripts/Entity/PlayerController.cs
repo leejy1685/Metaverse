@@ -5,6 +5,11 @@ using UnityEngine;
 public class PlayerController : BaseController
 {
 
+
+    protected override void Update()
+    {
+        base.Update();
+    }
     protected override void HandleAction()
     {
         //¿Ãµø
@@ -26,7 +31,5 @@ public class PlayerController : BaseController
                 ObjectController.ActiveObject();
         }
     }
-
-
 
 }

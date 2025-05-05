@@ -1,63 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class MapManager : MonoBehaviour
 {
-    [SerializeField] Transform player;
+    public static MapManager instance;
 
-    //Room1
-    [SerializeField] private GameObject room1TilemapCollider;
-    [SerializeField] private TilemapRenderer room1Back;
+    [SerializeField] private Transform player;
 
-    //Room2
-    [SerializeField] private Rect Room;
-    [SerializeField] private GameObject room2TilemapCollider;
-    [SerializeField] private TilemapRenderer room2Fore;
+    private RoomController[] rooms;
+    private DoorController[] dooms;
 
-    //Door1
-    [SerializeField] private TilemapRenderer openDoor;
-    [SerializeField] private TilemapRenderer closeDoor;
+    [SerializeField] private Transform jumpGamePosition;
+    public Transform JumpGamePosition {  get { return jumpGamePosition; }}
+    [SerializeField] private Transform jumpGameCameraPosition;
+    public Transform JumpGameCameraPostion { get { return jumpGameCameraPosition; } }
 
-    // 기즈모를 그려 영역을 시각화 (선택된 경우에만 표시)
-    private void OnDrawGizmosSelected()
+
+    private void Awake()
     {
-        if (Room == null) return;
+        instance = this;
+    }
 
-        Gizmos.color = new Color(1,0,0,0.2f);
-
-        Vector3 center = new Vector3(Room.x + Room.width / 2, Room.y + Room.height / 2);
-        Vector3 size = new Vector3(Room.width, Room.height);
-        Gizmos.DrawCube(center, size);
-
+    private void Start()
+    {
+        rooms = GetComponentsInChildren<RoomController>();
+        dooms = GetComponentsInChildren<DoorController>();
     }
 
     private void Update()
     {
-        inRoom2();
-    }
-
-    void inRoom2()
-    {
-        if (Room.Contains(player.position))
+        foreach (RoomController room in rooms)
         {
+            if (room.Room.Contains(player.position))
+            {
+                room.InRoom();
+            }
+            else
+            {
 
-            room2Fore.sortingOrder = 120;
-            openDoor.sortingOrder = 120;
-            closeDoor.sortingOrder = 120;
-
-            room1TilemapCollider.SetActive(false);
-            room2TilemapCollider.SetActive(true);
+                room.OutRoom();
+            }
         }
-        else
-        {
-            room2Fore.sortingOrder = room1Back.sortingOrder;
-            openDoor.sortingOrder = 10;
-            closeDoor.sortingOrder = 10;
 
-            room1TilemapCollider.SetActive(true);
-            room2TilemapCollider.SetActive(false);
+        foreach(DoorController door in dooms)
+        {
+            if(door.Position.position.y > player.position.y)
+            {
+                door.ForeDoorPlayer();
+            }
+            else
+            {
+                door.BackDoorPlayer();
+            }
         }
     }
 
