@@ -23,6 +23,12 @@ public class MapManager : MonoBehaviour
     [SerializeField] private Transform arrowSpwanPostion;
     public Transform ArrowSpwanPostion { get { return arrowSpwanPostion; } }
 
+    private Vector2 mapSizeMin;
+    public Vector2 MapSizeMin { get { return mapSizeMin; } }
+
+    private Vector2 mapSizeMax;
+    public Vector2 MapSizeMax { get { return mapSizeMax; } }
+
 
     private void Awake()
     {
@@ -33,6 +39,26 @@ public class MapManager : MonoBehaviour
     {
         rooms = GetComponentsInChildren<RoomController>();
         dooms = GetComponentsInChildren<DoorController>();
+
+        //카메라를 위한 맵 크기 계산
+        float minX = float.MaxValue;
+        float minY = float.MaxValue;
+        float maxX = float.MinValue;
+        float maxY = float.MinValue;
+        foreach (RoomController room in rooms)
+        {
+            if (room.mapMinValue().x < minX)
+                minX = room.mapMinValue().x;
+            if (room.mapMinValue().y < minY)
+                minY = room.mapMinValue().y;
+            if(room.mapMaxValue().x > maxX)
+                maxX = room.mapMaxValue().x;
+            if(room.mapMaxValue().y > maxY)
+                maxY = room.mapMaxValue().y;
+        }
+        mapSizeMin = new Vector2(minX, minY);
+        mapSizeMax = new Vector2(maxX, maxY);
+        
     }
 
     private void Update()

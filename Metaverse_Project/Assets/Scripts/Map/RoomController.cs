@@ -28,6 +28,7 @@ public class RoomController : MonoBehaviour
         roomCollider.SetActive(true);
         backDesign.sortingOrder = 10;
         foreDesign.sortingOrder = 120;
+
     }
 
     public void OutRoom()
@@ -36,4 +37,14 @@ public class RoomController : MonoBehaviour
         backDesign.sortingOrder = 10;
         foreDesign.sortingOrder = 10;
     }
+
+    public Vector2 mapMinValue()
+    {
+        return new Vector2(room.x, room.y);
+    }
+    public Vector2 mapMaxValue()
+    {
+        return new Vector2(room.x + room.width, room.y + room.height);
+    }
+
 }
