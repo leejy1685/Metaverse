@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     MapManager mapManager;
     //UI
     UIManager uiManager;
+    //Sound
+    SoundManager soundManager;
 
 
     //점프 게임
@@ -38,6 +40,7 @@ public class GameManager : MonoBehaviour
     {
         mapManager = MapManager.instance;
         uiManager = UIManager.instance;
+        soundManager = SoundManager.instance;  
 
         uiManager.ChangeState(UIState.Home);
 
@@ -55,6 +58,9 @@ public class GameManager : MonoBehaviour
         //UI 설정
         uiManager.ChangeScore(jumpGameScore);
         uiManager.ChangeState(UIState.JumpGame);
+
+        //사운드 설정
+        soundManager.ChangeBackGroundMusic(soundManager.gameBGMClip);
     }
 
     IEnumerator createArrow()
@@ -88,6 +94,9 @@ public class GameManager : MonoBehaviour
         //UI
         uiManager.ChangeGamePanel();
         uiManager.ChangeState(UIState.JumpGameOver);
+
+        //Sound
+        soundManager.ChangeBackGroundMusic(soundManager.stdBGMClip);
     }
 
     public void StartGame()

@@ -8,6 +8,8 @@ public class Obstacle : MonoBehaviour
     Rigidbody2D _rigidbody;
     float[] heights = { -2f, 1.5f };
     GameManager gameManager;
+
+    [SerializeField] AudioClip arrowSound;
     void Start()
     {
         gameManager = GameManager.instance;
@@ -17,6 +19,9 @@ public class Obstacle : MonoBehaviour
         Vector3 arrowPostion = arrow.transform.position;
         arrowPostion.y += heights[Random.Range(0,2)];
         arrow.transform.position = arrowPostion;
+
+        //sound
+        SoundManager.PlayClip(arrowSound);
     }
 
     private void FixedUpdate()

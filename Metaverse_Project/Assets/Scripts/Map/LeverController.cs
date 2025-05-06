@@ -7,6 +7,8 @@ public class LeverController : ObjectController
 {
     GameManager gameManager;
 
+    [SerializeField] AudioClip LeverSound;
+
     private void Start()
     {
         gameManager = GameManager.instance;
@@ -21,12 +23,18 @@ public class LeverController : ObjectController
 
     public void RightLever()
     {
+        //sound
+        SoundManager.PlayClip( LeverSound );
+
         beforeObject.SetActive(false);
         afterObject.SetActive(true);
     }
 
     public void LeftLever()
     {
+        //sound
+        SoundManager.PlayClip(LeverSound);
+
         beforeObject.SetActive(true);
         afterObject.SetActive(false);
     }

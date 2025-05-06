@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : BaseController
 {
+    [SerializeField] AudioClip JumpSound;
 
     protected override void Update()
     {
@@ -19,6 +20,9 @@ public class PlayerController : BaseController
         //มกวม
         if (!isJump && Input.GetKeyDown(KeyCode.Space))
         {
+            //sound
+            SoundManager.PlayClip(JumpSound);
+
             jumpY = statHandler.JumpPower;
             isJump = true;
         }

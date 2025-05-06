@@ -10,6 +10,9 @@ public class DoorController : ObjectController
 
     bool isOpen;
 
+    [SerializeField] AudioClip openSound;
+    [SerializeField] AudioClip closeSound;
+
     public override void ActiveObject()
     {
         if (isOpen)
@@ -29,6 +32,9 @@ public class DoorController : ObjectController
         afterObject.SetActive(true);
         isOpen = true;
         tilemapCollider.isTrigger = true;
+
+        //sound
+        SoundManager.PlayClip(openSound);
     }
 
     private void CloseDoor()
@@ -37,6 +43,9 @@ public class DoorController : ObjectController
         beforeObject.SetActive(true);
         isOpen = false;
         tilemapCollider.isTrigger = false;
+
+        //sound
+        SoundManager.PlayClip(closeSound);
     }
 
     public void ForeDoorPlayer()

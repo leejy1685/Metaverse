@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 5730453668022900716}
+  arrowSound: {fileID: 8300000, guid: c08edda627879d448b253a220c034de2, type: 3}
 --- !u!50 &5282430989168000169
 Rigidbody2D:
   serializedVersion: 4
