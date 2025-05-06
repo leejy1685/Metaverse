@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 125460800}
   - component: {fileID: 125460802}
   - component: {fileID: 125460801}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Close
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 132745019}
   - component: {fileID: 132745021}
   - component: {fileID: 132745020}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1208,7 +1208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 501018299}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ArrowSpawnPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1347,7 +1347,7 @@ GameObject:
   - component: {fileID: 567049602}
   - component: {fileID: 567049601}
   - component: {fileID: 567049600}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ForeDesign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2242,7 +2242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 599364029}
   - component: {fileID: 599364030}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Room2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2557,7 +2557,7 @@ GameObject:
   - component: {fileID: 722352532}
   - component: {fileID: 722352534}
   - component: {fileID: 722352533}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2870,7 +2870,7 @@ GameObject:
   - component: {fileID: 744439827}
   - component: {fileID: 744439829}
   - component: {fileID: 744439828}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3195,7 +3195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 847006405}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: JumpGameCameraPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3309,7 +3309,7 @@ GameObject:
   - component: {fileID: 865544887}
   - component: {fileID: 865544889}
   - component: {fileID: 865544888}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BackDesign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4234,7 +4234,7 @@ GameObject:
   - component: {fileID: 931006560}
   - component: {fileID: 931006562}
   - component: {fileID: 931006561}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BackDesign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10465,7 +10465,7 @@ GameObject:
   - component: {fileID: 1297943760}
   - component: {fileID: 1297943762}
   - component: {fileID: 1297943761}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15704,7 +15704,7 @@ GameObject:
   - component: {fileID: 1325963082}
   - component: {fileID: 1325963084}
   - component: {fileID: 1325963083}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ForeDesign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16796,7 +16796,7 @@ GameObject:
   - component: {fileID: 1326437659}
   - component: {fileID: 1326437661}
   - component: {fileID: 1326437660}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19800,7 +19800,7 @@ GameObject:
   - component: {fileID: 1560607654}
   - component: {fileID: 1560607653}
   - component: {fileID: 1560607655}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19863,7 +19863,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1627571735}
   - component: {fileID: 1627571736}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Room1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19922,7 +19922,7 @@ GameObject:
   - component: {fileID: 1641822005}
   - component: {fileID: 1641822004}
   - component: {fileID: 1641822003}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20873,7 +20873,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1723534238}
   - component: {fileID: 1723534239}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: JumpGamePlayerPosition
   m_TagString: JumpGamePosition
   m_Icon: {fileID: 0}
@@ -21070,7 +21070,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1760563524}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21813,7 +21813,7 @@ GameObject:
   - component: {fileID: 1973408991}
   - component: {fileID: 1973408993}
   - component: {fileID: 1973408992}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21967,7 +21967,7 @@ GameObject:
   - component: {fileID: 2023578067}
   - component: {fileID: 2023578069}
   - component: {fileID: 2023578068}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22562,7 +22562,7 @@ GameObject:
   - component: {fileID: 2120286065}
   - component: {fileID: 2120286064}
   - component: {fileID: 2120286063}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}

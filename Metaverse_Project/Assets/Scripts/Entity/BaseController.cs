@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class BaseController : MonoBehaviour
 {
@@ -96,6 +97,8 @@ public class BaseController : MonoBehaviour
             float jump = Mathf.PingPong(jumpY, jumpPower * 2) - jumpPower;
             Vector2 direction = _rigidbody.velocity;
             direction.y = jump;
+            direction.x = 0;
+
             _rigidbody.velocity = direction;
 
             //점프중 충돌 무시
