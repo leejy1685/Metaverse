@@ -73,9 +73,10 @@ public class UIManager : MonoBehaviour
         jumpGameUI.UdpateScore(score);
     }
 
-    public void ChangeGameOverPanel()
+    public void ChangeGamePanel()
     {
         jumpGameOverUI.UpdatePanel();
+        gameUI.UpdateBestScore();
     }
 
 }

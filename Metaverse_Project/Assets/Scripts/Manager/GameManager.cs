@@ -65,6 +65,12 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
         }
     }
+    public void addJumpGamePoint()
+    {
+        jumpGameScore++;
+        //UI갱신
+        uiManager.ChangeScore(jumpGameScore);
+    }
 
     public void JumpGameOver()
     {
@@ -80,19 +86,13 @@ public class GameManager : MonoBehaviour
         jumpGameLever.LeftLever();
 
         //UI
-        uiManager.ChangeGameOverPanel();
+        uiManager.ChangeGamePanel();
         uiManager.ChangeState(UIState.JumpGameOver);
     }
 
     public void StartGame()
     {
         uiManager.ChangeState(UIState.Game);
-    }
-    public void addJumpGamePoint()
-    {
-        jumpGameScore++;
-        //UI갱신
-        uiManager.ChangeScore(jumpGameScore);
     }
 
 }
