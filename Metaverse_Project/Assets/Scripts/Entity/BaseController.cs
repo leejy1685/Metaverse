@@ -8,7 +8,7 @@ public class BaseController : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody; // 이동을 위한 물리 컴포넌트
 
-    [SerializeField] private SpriteRenderer characterRenderer; // 좌우 반전을 위한 렌더러
+    [SerializeField] protected SpriteRenderer characterRenderer; // 좌우 반전을 위한 렌더러
 
     protected Vector2 movementDirection = Vector2.zero; // 현재 이동 방향
     public Vector2 MovementDirection { get { return movementDirection; } }

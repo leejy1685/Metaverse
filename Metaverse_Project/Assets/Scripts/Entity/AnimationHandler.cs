@@ -9,6 +9,7 @@ public class AnimationHandler : MonoBehaviour
     private static readonly int IsJumping = Animator.StringToHash("IsJump");
 
     [SerializeField] protected Animator animator;
+    [SerializeField] protected AnimatorOverrideController overrideController;
 
     protected virtual void Awake()
     {
@@ -30,6 +31,27 @@ public class AnimationHandler : MonoBehaviour
     public void EndJump()
     {
         animator.SetBool(IsJumping, false);
+    }
+
+    public void ChangeAnimation(AnimationClip[] order)
+    {
+        // clips를 받아올 공간 할당
+        List<KeyValuePair<AnimationClip, AnimationClip>> clips = new();
+
+        // 키값 가져오기
+        overrideController.GetOverrides(clips);
+
+        //애니메이션 넣어주기
+        for (int i=0;i<order.Length;i++) 
+        {
+            clips[i] = new KeyValuePair<AnimationClip, AnimationClip>(clips[i].Key, order[i]);
+        }
+
+        // 적용하기
+        overrideController.ApplyOverrides(clips);
+
+        // 실행중인 애니메이터에 적용하기
+        animator.runtimeAnimatorController = overrideController;
     }
 
 }
