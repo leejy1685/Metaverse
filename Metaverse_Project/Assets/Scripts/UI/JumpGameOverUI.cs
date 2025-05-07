@@ -6,16 +6,20 @@ using UnityEngine.UI;
 
 public class JumpGameOverUI : BaseUI
 {
+    //최고 점수와 현재 점수 Text
     [SerializeField] TextMeshProUGUI bestScore;
     [SerializeField] TextMeshProUGUI Score;
 
+    //재시작 버튼
     [SerializeField] Button retryButton;
+    //확인 버튼
     [SerializeField] Button CheckButton;
 
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);
 
+        //판넬 업데이트
         UpdatePanel();
 
         //버튼 기능 연결
@@ -28,16 +32,19 @@ public class JumpGameOverUI : BaseUI
         return UIState.JumpGameOver;
     }
 
+    //재시작 버튼
     private void retryGame()
-    {
+    {   
         gameManager.JumpGameStart();
     } 
 
+    //확인 버튼
     private void CheckGame()
-    {
+    {   
         uiManager.ChangeState(UIState.Game);
     }
 
+    //업데이트 판넬
     public void UpdatePanel()
     {
         //점수 가져오기

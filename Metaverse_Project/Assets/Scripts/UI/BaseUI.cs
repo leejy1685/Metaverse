@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class BaseUI : MonoBehaviour
 {
-    protected UIManager uiManager;
+    protected UIManager uiManager;  
     protected GameManager gameManager;
 
     public virtual void Init(UIManager uiManager)

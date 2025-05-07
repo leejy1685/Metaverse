@@ -19,12 +19,15 @@ public class ColorCustomUI : BaseUI
     {
         base.Init(uiManager);
 
+        //현재 캐릭터의 rgb값을 슬라이더에 넣기
         Red.value = playerSprtie.color.r;
         Green.value = playerSprtie.color.g;
         Blue.value = playerSprtie.color.b;
 
+        //캐릭터 이미지 보여주기
         CharacterImage.sprite = playerSprtie.sprite;
 
+        //ok 버튼 기능 넣어주기
         OkButton.onClick.AddListener(ChangeColor);
     }
 
@@ -35,16 +38,18 @@ public class ColorCustomUI : BaseUI
 
     private void Update()
     {
-        UpdateImage();
+        UpdateImage();  //이미지 업데이트
     }
 
+    //색이 변화함에 따라 이미지 변경
     public void UpdateImage()
-    {
+    {   
         CharacterImage.sprite = playerSprtie.sprite;
         Color newColor = new Color(Red.value, Green.value, Blue.value);
         CharacterImage.color = newColor;
     }
 
+    //변경된 색으로 캐릭터에 적용
     public void ChangeColor()
     {
         Color newColor = new Color(Red.value, Green.value, Blue.value);

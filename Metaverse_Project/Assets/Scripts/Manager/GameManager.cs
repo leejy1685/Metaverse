@@ -25,8 +25,6 @@ public class GameManager : MonoBehaviour
     private const string jumpGameBestScore = "JumpGame";
     public string JumpGameBestScore { get {return jumpGameBestScore;} }
 
-
-
     //플레이어
     [SerializeField] PlayerController playerController;
 
@@ -38,12 +36,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        //필요한 매니저 가져오기
         mapManager = MapManager.instance;
         uiManager = UIManager.instance;
         soundManager = SoundManager.instance;  
 
+        //시작 화면
         uiManager.ChangeState(UIState.Home);
 
+        //점프게임 초기 상태
         jumpGameStarted = false;
         JumpGamePlayed = false;
     }
@@ -63,7 +64,8 @@ public class GameManager : MonoBehaviour
         soundManager.ChangeBackGroundMusic(soundManager.gameBGMClip);
     }
 
-    IEnumerator createArrow()
+    //점프 게임 장애물 생성 코루틴
+    IEnumerator createArrow() 
     {
         while (true)
         {
@@ -71,15 +73,19 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
         }
     }
-    public void addJumpGamePoint()
+
+    //점프 게임 점수 추가
+    public void addJumpGamePoint()  
     {
         jumpGameScore++;
         //UI갱신
         uiManager.ChangeScore(jumpGameScore);
     }
 
+
     public void JumpGameOver()
     {
+        //최고 점수 연산
         int bestScore = PlayerPrefs.GetInt(jumpGameBestScore);
         if (bestScore < jumpGameScore)
         {
@@ -87,8 +93,11 @@ public class GameManager : MonoBehaviour
         }
         PlayerPrefs.SetInt(jumpGameBestScore, bestScore);
 
+        //게임 종료 상태
         JumpGamePlayed = false;
+        //코루틴 정지
         StopAllCoroutines();
+        //레버 위치 원래대로
         jumpGameLever.LeftLever();
 
         //UI
@@ -99,11 +108,13 @@ public class GameManager : MonoBehaviour
         soundManager.ChangeBackGroundMusic(soundManager.stdBGMClip);
     }
 
+    //초기 게임 시작
     public void StartGame()
     {
         uiManager.ChangeState(UIState.Game);
     }
 
+    //컬러 커스텀 UI
     public void ColorCustumStart()
     {
         uiManager.ChangeState(UIState.ColorCustom);

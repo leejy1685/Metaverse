@@ -8,7 +8,10 @@ public class AnimationHandler : MonoBehaviour
     private static readonly int IsMoving = Animator.StringToHash("IsMove");
     private static readonly int IsJumping = Animator.StringToHash("IsJump");
 
-    [SerializeField] protected Animator animator;
+
+    [SerializeField] protected Animator animator;    //애니메이터
+
+    //애니메이션 변경을 위한 오버라이드 컨트롤러
     [SerializeField] protected AnimatorOverrideController overrideController;
 
     protected virtual void Awake()
@@ -23,12 +26,12 @@ public class AnimationHandler : MonoBehaviour
         animator.SetBool(IsMoving, obj.magnitude > .5f);
     }
 
-    public void Jump()
+    public void Jump()  //점프 중
     {
         animator.SetBool(IsJumping, true);
     }
 
-    public void EndJump()
+    public void EndJump()   //점프 끝
     {
         animator.SetBool(IsJumping, false);
     }

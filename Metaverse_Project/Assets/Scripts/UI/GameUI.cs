@@ -13,6 +13,7 @@ public class GameUI : BaseUI
     {  
         base.Init(uiManager);// BaseUI에서 UIManager 저장
 
+        //최고 점수 업데이트
         UpdateBestScore();
 
         // 버튼 클릭 이벤트 연결
@@ -27,11 +28,12 @@ public class GameUI : BaseUI
 
     public void OnClickExitButton()
     {
-        Application.Quit();// GameManager 통해 게임 시작
+        Application.Quit();//게임 종료
     }
 
     public void UpdateBestScore()
     {
+        //키 값 가져오기
         string BestScoreString = gameManager.JumpGameBestScore;
         //게임 최고 점수 표시
         float bestScore = PlayerPrefs.GetInt(BestScoreString, 0);

@@ -6,16 +6,20 @@ using UnityEngine.Tilemaps;
 
 public class MapManager : MonoBehaviour
 {
-    public static MapManager instance;
+    //싱글톤
+    public static MapManager instance;  
 
+    //플레이어 정보
     [SerializeField] private Transform player;
 
+    //방과 문
     private RoomController[] rooms;
     private DoorController[] dooms;
 
-
     //점프 게임 구현
     [SerializeField] private Transform jumpGamePosition;
+
+    //점프 게임
     public Transform JumpGamePosition { get { return jumpGamePosition; } }
     [SerializeField] private Transform jumpGameCameraPosition;
     public Transform JumpGameCameraPostion { get { return jumpGameCameraPosition; } }
@@ -23,6 +27,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private Transform arrowSpwanPostion;
     public Transform ArrowSpwanPostion { get { return arrowSpwanPostion; } }
 
+    //카메라가 필요한 맵의 정보
     private Vector2 mapSizeMin;
     public Vector2 MapSizeMin { get { return mapSizeMin; } }
 
@@ -31,12 +36,13 @@ public class MapManager : MonoBehaviour
 
 
     private void Awake()
-    {
+    {   //싱글톤 할당
         instance = this;
     }
 
     private void Start()
-    {
+    {   
+        //방과 문을 가져오기
         rooms = GetComponentsInChildren<RoomController>();
         dooms = GetComponentsInChildren<DoorController>();
 
@@ -63,6 +69,7 @@ public class MapManager : MonoBehaviour
 
     private void Update()
     {
+        //방안에 있는지 확인 OrderInLayer 조절
         foreach (RoomController room in rooms)
         {
             if (room.Room.Contains(player.position))
@@ -76,6 +83,7 @@ public class MapManager : MonoBehaviour
             }
         }
 
+        //문 앞에 있는지 확인 OrderInLayer 조절
         foreach(DoorController door in dooms)
         {
             if(door.Position.position.y > player.position.y)

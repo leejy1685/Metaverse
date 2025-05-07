@@ -21,16 +21,20 @@ public abstract class ObjectController : MonoBehaviour
 
     protected void Awake()
     {
+        //렌더러 가져오기
         beforeRenderer = beforeObject.GetComponent<TilemapRenderer>();
         afterRenderer = afterObject.GetComponent<TilemapRenderer>();
 
+        //기존 마테리얼 저장
         defaultMaterial = beforeRenderer.material;
 
+        //충돌여부 판단
         tilemapCollider = GetComponent<TilemapCollider2D>();
     }
 
     protected void Update()
     {
+        //활성화 가능 할 때 외곽선 생성
         if (IsActive)
         {
             beforeRenderer.material = OutLineMaterial;
@@ -43,6 +47,7 @@ public abstract class ObjectController : MonoBehaviour
         }
     }
 
+    //플레이어와 충돌 시 활성화 가능
     protected void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -75,6 +80,7 @@ public abstract class ObjectController : MonoBehaviour
         }
     }
 
+    //오브젝트가 작동하는 추상 메서드
     public abstract void ActiveObject();
 
 }

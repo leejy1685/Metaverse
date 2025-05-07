@@ -5,13 +5,17 @@ using UnityEngine.Tilemaps;
 
 public class RoomController : MonoBehaviour
 {
-    [SerializeField] private Rect room;
+    //방의 범위
+    [SerializeField] private Rect room; 
     public Rect Room { get { return room; } }
 
+    //방의 충돌
     [SerializeField] private GameObject roomCollider;
+    //방의 앞 디자인과 뒤 디자인
     [SerializeField] private TilemapRenderer backDesign;
     [SerializeField] private TilemapRenderer foreDesign;
 
+    //방의 범위 설정(기즈모 이용)
     private void OnDrawGizmosSelected()
     {
         if (room == null) return;
@@ -23,6 +27,7 @@ public class RoomController : MonoBehaviour
         Gizmos.DrawCube(center, size);
     }
 
+    //방 안에 있을 때 OrderInLayer 조정
     public void InRoom()
     {
         roomCollider.SetActive(true);
@@ -31,6 +36,7 @@ public class RoomController : MonoBehaviour
 
     }
 
+    //방 밖에 있을 때 OrderInLayer 조정
     public void OutRoom()
     {
         roomCollider.SetActive(false);
@@ -38,6 +44,7 @@ public class RoomController : MonoBehaviour
         foreDesign.sortingOrder = 10;
     }
 
+    //방의 좌표를 계산하기 편하게 하기 위해서 이런식으로 리턴
     public Vector2 mapMinValue()
     {
         return new Vector2(room.x, room.y);

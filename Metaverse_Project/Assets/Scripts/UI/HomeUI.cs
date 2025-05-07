@@ -18,12 +18,12 @@ public class HomeUI : BaseUI
 
     public void OnClickStartButton()
     {
-        GameManager.instance.StartGame();
+        GameManager.instance.StartGame();//게임 시작
     }
 
     public void OnClickExitButton()
     {
-        Application.Quit();// GameManager 통해 게임 시작
+        Application.Quit();// 게임 종료
     }
 
     protected override UIState GetUIState()

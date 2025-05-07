@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class LeverController : ObjectController
 {
+    //게임 실행에 필요한 매니저
     GameManager gameManager;
 
+    //레버 사운드
     [SerializeField] AudioClip LeverSound;
 
     private void Start()
-    {
+    {   //정보 가져오기
         gameManager = GameManager.instance;
     }
 
@@ -21,6 +23,7 @@ public class LeverController : ObjectController
         gameManager.JumpGameStart();
     }
 
+    //레버가 오른쪽으로
     public void RightLever()
     {
         //sound
@@ -30,6 +33,7 @@ public class LeverController : ObjectController
         afterObject.SetActive(true);
     }
 
+    //레버가 왼쪽으로
     public void LeftLever()
     {
         //sound
