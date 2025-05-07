@@ -28,7 +28,6 @@ public class FollowCamera : MonoBehaviour
     {
         JumpGameCamera();
         DefalutCamera();
-
     }
 
     void JumpGameCamera()

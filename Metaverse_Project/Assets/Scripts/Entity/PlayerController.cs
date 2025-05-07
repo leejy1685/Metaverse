@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerController : BaseController
 {
     [SerializeField] AudioClip JumpSound;
+    [SerializeField] GameObject GuidText;
 
     protected override void Update()
     {
         base.Update();
+        Guidancetext();
     }
     protected override void HandleAction()
     {
@@ -50,6 +52,18 @@ public class PlayerController : BaseController
         if (collision.CompareTag("Obstacle"))
         {
             gameManager.addJumpGamePoint();
+        }
+    }
+
+    private void Guidancetext()
+    {
+        if (ObjectController != null && ObjectController.IsActive)
+        {
+            GuidText.SetActive(true);
+        }
+        else
+        {
+            GuidText.SetActive(false);
         }
     }
 
