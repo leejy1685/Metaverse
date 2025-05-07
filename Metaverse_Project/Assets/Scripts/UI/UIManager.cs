@@ -9,6 +9,7 @@ public enum UIState
     Game,
     JumpGame,
     JumpGameOver,
+    ColorCustom
 }
 public class UIManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class UIManager : MonoBehaviour
     GameUI gameUI;
     JumpGameUI jumpGameUI;
     JumpGameOverUI jumpGameOverUI;
+    ColorCustomUI colorCustomUI;
     private UIState currentState;// 현재 UI 상태
 
     public static UIManager instance;
@@ -36,6 +38,8 @@ public class UIManager : MonoBehaviour
         jumpGameUI.Init(this);
         jumpGameOverUI = GetComponentInChildren<JumpGameOverUI>(true);
         jumpGameOverUI.Init(this);
+        colorCustomUI = GetComponentInChildren<ColorCustomUI>(true);
+        colorCustomUI.Init(this);
 
         // 초기 상태를 홈 화면으로 설정
         ChangeState(UIState.Home);
@@ -56,6 +60,10 @@ public class UIManager : MonoBehaviour
         ChangeState(UIState.JumpGameOver);
     }
 
+    public void SetColorCustomUI()
+    {
+        ChangeState(UIState.ColorCustom);
+    }
     // 현재 UI 상태를 변경하고, 각 UI 오브젝트에 상태를 전달
     public void ChangeState(UIState state)
     {
@@ -66,6 +74,7 @@ public class UIManager : MonoBehaviour
         gameUI.SetActive(currentState);
         jumpGameUI.SetActive(currentState);
         jumpGameOverUI.SetActive(currentState);
+        colorCustomUI.SetActive(currentState);
     }
 
     public void ChangeScore(int score)

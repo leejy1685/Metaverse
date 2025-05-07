@@ -104,4 +104,9 @@ public class GameManager : MonoBehaviour
         uiManager.ChangeState(UIState.Game);
     }
 
+    public void ColorCustumStart()
+    {
+        uiManager.ChangeState(UIState.ColorCustom);
+    }
+
 }
