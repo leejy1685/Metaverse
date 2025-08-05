@@ -81,12 +81,17 @@ Space를 눌러서 점프를 할 수 있으며, 화살을 하나 피할 수록 �
 - https://0x72.itch.io/dungeontileset-ii
 - https://leohpaz.itch.io/minifantasy-dungeon-sfx-pack
 
-### 기능 설명
-- 맵 밖을 비추지 않는 카메라 기능.
-- 플레이어 조작 기능.
-- 플레이어 이동 시 파티클 실행 기능
-- 미니 게임 기능 및 점수 기록 기능.
-- 기즈모를 이용한 카메라 이동 범위 설정.
-- 상태머신 기반 UI 기능.
-  
+### 사용 기술
+FSM :</br>
+UI 상태를 Enum과 추상 클래스을 이용한 FSM으로 구현.
+
+Gizmo : </br>
+카메라가 이동 가능한 범위를 기즈모를 이용해서 설정.
+
+Animator Override Controller:</br>
+플레이어의 애니메이션을 애니메이터 오버라이드 컨트롤러를 이용해서 변경.
+
+Singleton : <br>
+여러 곳에서 자주 필요하거나 사용되고 또 하나만 존재해야하는 객체는 싱글톤으로 설정.
+
 
