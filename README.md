@@ -30,9 +30,11 @@ _[ 프로젝트 명 - **MiniGame Metaverse** ]_
 #### ◇ 오브젝트 상호작용 기능
 
 <img width="779" height="441" alt="image" src="https://github.com/user-attachments/assets/af71768d-1856-4643-8874-5ac09c4a7274" />
+
 상호작용 가능한 오브젝에 접근하면 외각선이 생기고, </br>
 
 <img width="773" height="437" alt="image" src="https://github.com/user-attachments/assets/de0847a6-164b-48af-890d-e72ffc9ff1a0" />
+
 F키를 눌러 상호작용 할 수 있습니다. </br>
 
 #### ◇ 미니게임 기능
